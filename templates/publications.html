@@ -1,0 +1,32 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+{% block title %}
+Publications
+{% endblock title %}
+
+{% block name %}
+<h1>Все новости и статьи</h1>
+{% endblock name %}
+
+{% block content %}
+<hr>
+{% if publications %}
+  <table width="1000" cellspacing="5" cellpadding="20" border="0.1">
+      <tr>
+          <td><h3>Заголовок</h3></td>
+          <td><h3>Дата публикации</h3></td>
+          <td><h3>Текст</h3></td>
+      </tr>
+      {% for pub in publications %}
+      <tr>
+          <td>{{ pub.title|censor }}</td>
+          <td>{{ pub.dtime_p }}</td>
+          <td>{{ pub.text_p|truncatewords:20|censor }}</td>
+      </tr>
+      {% endfor %}
+  </table>
+{% else %}
+<h1>Публикаций нет!</h1>
+{% endif %}
+{% endblock content %}
